@@ -1,5 +1,5 @@
 {% set name = "pycatch22" %}
-{% set version = "0.4.2" %}
+{% set version = "0.4.5" %}
 
 package:
   name: {{ name|lower }}
@@ -7,17 +7,18 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pycatch22-{{ version }}.tar.gz
-  sha256: 162bd9774a326993c564120221e779fb6e578139e9fb73ed6066a3137e61c3ad
+  sha256: 7ec844c659f22bedc66847ac866ef2bd86ffbbd4d8114b5e97f699f20a6f9f81
 
 build:
   script: {{ PYTHON }} -m pip install . -vv
-  number: 3
+  number: 0
 
 requirements:
   build:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
   host:
     - python
     - setuptools
